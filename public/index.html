@@ -464,8 +464,6 @@ footer{background:var(--bg);border-top:1px solid var(--line);padding:72px 0 36px
   .btn-primary,.btn-secondary{justify-content:center}
 }
 </style>
-<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-<script>if(window.netlifyIdentity){window.netlifyIdentity.on("init",function(u){if(!u){window.netlifyIdentity.on("login",function(){document.location.href="/admin/";});}});}</script>
 </head>
 <body>
 
@@ -1035,5 +1033,186 @@ footer{background:var(--bg);border-top:1px solid var(--line);padding:72px 0 36px
   document.querySelectorAll('.reveal').forEach(function(el){ro.observe(el)});
 })();
 </script>
+
+<script>
+// ── Venti Red CMS Content Loader ──────────────────────────────
+(function() {
+  // Parse front matter from markdown files
+  function parseFrontMatter(text) {
+    var match = text.match(/^---\n([\s\S]*?)\n---/);
+    if (!match) return {};
+    var data = {};
+    match[1].split('\n').forEach(function(line) {
+      var colon = line.indexOf(':');
+      if (colon < 0) return;
+      var key = line.slice(0, colon).trim();
+      var val = line.slice(colon + 1).trim().replace(/^["']|["']$/g, '');
+      if (val === 'true') val = true;
+      else if (val === 'false') val = false;
+      else if (!isNaN(val) && val !== '') val = Number(val);
+      data[key] = val;
+    });
+    return data;
+  }
+
+  // Parse markdown body (after front matter)
+  function parseBody(text) {
+    return text.replace(/^---[\s\S]*?---\n/, '').trim();
+  }
+
+  // Fetch a list of markdown files from a GitHub raw content path
+  function fetchContentList(repo, branch, folder, callback) {
+    // Use GitHub API to list files
+    var apiUrl = 'https://api.github.com/repos/' + repo + '/contents/' + folder + '?ref=' + branch;
+    fetch(apiUrl)
+      .then(function(r) { return r.json(); })
+      .then(function(files) {
+        if (!Array.isArray(files)) { callback([]); return; }
+        var mdFiles = files.filter(function(f) { return f.name.endsWith('.md'); });
+        var promises = mdFiles.map(function(f) {
+          return fetch(f.download_url).then(function(r) { return r.text(); });
+        });
+        Promise.all(promises).then(function(texts) {
+          var items = texts.map(function(t) {
+            var fm = parseFrontMatter(t);
+            fm._body = parseBody(t);
+            return fm;
+          }).filter(function(item) { return !item.draft; });
+          callback(items);
+        });
+      })
+      .catch(function() { callback([]); });
+  }
+
+  // Fetch a JSON data file
+  function fetchJSON(repo, branch, path, callback) {
+    var url = 'https://raw.githubusercontent.com/' + repo + '/' + branch + '/' + path;
+    fetch(url)
+      .then(function(r) { return r.json(); })
+      .then(callback)
+      .catch(function() { callback(null); });
+  }
+
+  var REPO = 'scoithin/ventired-website';
+  var BRANCH = 'main';
+
+  // ── PIPELINE ──────────────────────────────────────────────────
+  var pipelineContainer = document.querySelector('.hero-card-body');
+  if (pipelineContainer) {
+    fetchContentList(REPO, BRANCH, 'content/pipeline', function(items) {
+      if (!items.length) return;
+      items.sort(function(a, b) { return (a.order || 99) - (b.order || 99); });
+      var show = items.filter(function(i) { return i.show_homepage !== false; }).slice(0, 4);
+      var statusMap = { live: 'live', active: 'active', won: 'won' };
+      var tagClass = { live: '', active: 'pending', won: 'won' };
+      pipelineContainer.innerHTML = show.map(function(item) {
+        var dot = statusMap[item.status] || 'live';
+        var tc = tagClass[item.status] || '';
+        return '<div class="pipeline-row">' +
+          '<div class="pip-dot ' + dot + '"></div>' +
+          '<div class="pip-content">' +
+            '<div class="pip-name">' + item.client + ' — ' + item.project + '</div>' +
+            '<div class="pip-meta">' + item.country + ' · ' + (item.note || '') + '</div>' +
+          '</div>' +
+          '<div class="pip-tag ' + tc + '">' + (item.status_label || item.status) + '</div>' +
+        '</div>';
+      }).join('');
+    });
+  }
+
+  // ── TESTIMONIALS ──────────────────────────────────────────────
+  var proofGrid = document.querySelector('.proof-grid');
+  if (proofGrid) {
+    fetchContentList(REPO, BRANCH, 'content/testimonials', function(items) {
+      if (!items.length) return;
+      items.sort(function(a, b) { return (a.order || 99) - (b.order || 99); });
+      var show = items.filter(function(i) { return i.show_homepage !== false; });
+      proofGrid.innerHTML = show.map(function(item, idx) {
+        var delay = idx === 0 ? '' : idx === 1 ? ' d1' : ' d2';
+        var stars = '★'.repeat(item.stars || 5);
+        return '<div class="proof-card reveal' + delay + '">' +
+          '<div class="proof-stars">' + stars + '</div>' +
+          '<p class="proof-quote">' + item.quote + '</p>' +
+          '<div class="proof-meta">' +
+            '<div class="proof-name">' + item.name + '</div>' +
+            '<div class="proof-role">' + item.company + '</div>' +
+            '<div class="proof-result">' + item.result + '</div>' +
+          '</div>' +
+        '</div>';
+      }).join('');
+    });
+  }
+
+  // ── BLOG POSTS ────────────────────────────────────────────────
+  var blogGrid = document.querySelector('.blog-grid');
+  if (blogGrid) {
+    fetchContentList(REPO, BRANCH, 'content/posts', function(items) {
+      if (!items.length) return;
+      items.sort(function(a, b) { return new Date(b.date) - new Date(a.date); });
+      var show = items.slice(0, 3);
+      var emojis = { 'market-entry': '🏗️', 'adnoc': '⚡', 'bid-strategy': '📋', 'epc': '🔧', 'channel': '🌐', 'ksa': '🇸🇦', 'intelligence': '💡' };
+      var catLabels = { 'market-entry': 'Market Entry', 'adnoc': 'ADNOC Strategy', 'bid-strategy': 'Bid Strategy', 'epc': 'EPC Strategy', 'channel': 'Channel Intelligence', 'ksa': 'Saudi Arabia', 'intelligence': 'VR Intelligence' };
+      blogGrid.innerHTML = show.map(function(item, idx) {
+        var delay = idx === 0 ? '' : idx === 1 ? ' d1' : ' d2';
+        var emoji = emojis[item.category] || '📄';
+        var catLabel = catLabels[item.category] || item.category;
+        var slug = item.date + '-' + (item.title || '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+        var date = item.date ? new Date(item.date).toLocaleDateString('en-GB', {month: 'long', year: 'numeric'}) : '';
+        return '<div class="blog-card reveal' + delay + '">' +
+          '<div class="blog-img">' + emoji + '</div>' +
+          '<div class="blog-body">' +
+            '<div class="blog-cat">' + catLabel + '</div>' +
+            '<div class="blog-title">' + item.title + '</div>' +
+            '<p class="blog-excerpt">' + (item.excerpt || '') + '</p>' +
+            '<div class="blog-foot">' +
+              '<span>' + date + ' · ' + (item.read_time || 8) + ' min</span>' +
+              '<span class="blog-read">Read →</span>' +
+            '</div>' +
+          '</div>' +
+        '</div>';
+      }).join('');
+    });
+  }
+
+  // ── PRICING ───────────────────────────────────────────────────
+  fetchJSON(REPO, BRANCH, '_data/pricing.json', function(data) {
+    if (!data) return;
+    var cards = [
+      { key: 'diagnostic', priceEl: document.querySelectorAll('.product-price')[0], noteEl: document.querySelectorAll('.product-price-note')[0] },
+      { key: 'launchpad',  priceEl: document.querySelectorAll('.product-price')[1], noteEl: document.querySelectorAll('.product-price-note')[1] },
+      { key: 'fractional', priceEl: document.querySelectorAll('.product-price')[2], noteEl: document.querySelectorAll('.product-price-note')[2] },
+    ];
+    cards.forEach(function(c) {
+      if (data[c.key] && c.priceEl) c.priceEl.textContent = data[c.key].price;
+      if (data[c.key] && c.noteEl) c.noteEl.textContent = data[c.key].note;
+    });
+  });
+
+  // ── SETTINGS ──────────────────────────────────────────────────
+  fetchJSON(REPO, BRANCH, '_data/settings.json', function(data) {
+    if (!data) return;
+    // Update all calendar links
+    if (data.calendar_url) {
+      document.querySelectorAll('a[href*="calendar.app.google"]').forEach(function(a) {
+        a.href = data.calendar_url;
+      });
+    }
+    // Update all Stripe links
+    if (data.stripe_url) {
+      document.querySelectorAll('a[href*="buy.stripe.com"]').forEach(function(a) {
+        a.href = data.stripe_url;
+      });
+    }
+    // Update WhatsApp
+    if (data.whatsapp) {
+      document.querySelectorAll('a[href*="wa.me"]').forEach(function(a) {
+        a.href = 'https://wa.me/' + data.whatsapp;
+      });
+    }
+  });
+
+})();
+</script>
+
 </body>
 </html>
