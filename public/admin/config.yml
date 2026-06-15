@@ -1,5 +1,6 @@
 backend:
-  name: git-gateway
+  name: github
+  repo: scoithin/ventired-website
   branch: main
   commit_messages:
     create: "Content: add {{collection}} — {{slug}}"
