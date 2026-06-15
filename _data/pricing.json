@@ -1,0 +1,41 @@
+{
+  "diagnostic": {
+    "price": "$197",
+    "note": "Fixed · 5 working days · No lock-in",
+    "tagline": "Go or No-Go — Before You Commit",
+    "features": [
+      "GCC opportunity landscape assessment",
+      "Procurement cycle mapping for your sector",
+      "Route to market and channel risk analysis",
+      "Competitor positioning in-region",
+      "Go/No-Go recommendation with rationale",
+      "60-minute debrief call with Scott"
+    ]
+  },
+  "launchpad": {
+    "price": "POA",
+    "note": "Fixed-scope · Priced on your sector and market",
+    "tagline": "Full Infrastructure — 90 Days",
+    "features": [
+      "Full route to market architecture",
+      "Qualified distributor pipeline (scored & ranked)",
+      "EPC contractor access with warm introductions",
+      "ADNOC / Aramco vendor approval navigation",
+      "90-day go-to-market execution plan",
+      "First tender submitted by day 90"
+    ]
+  },
+  "fractional": {
+    "price": "Retainer",
+    "note": "Half the overhead of a senior hire · Results week one",
+    "tagline": "Embedded Execution — Monthly",
+    "features": [
+      "Embedded weekly commercial execution",
+      "End-to-end pipeline ownership & CRM",
+      "In-region representation & meetings",
+      "Monthly board reporting on every deal",
+      "Tender strategy and bid submission",
+      "Direct access to 30 years of closed-deal intel"
+    ]
+  }
+}

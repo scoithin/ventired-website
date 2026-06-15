@@ -1,0 +1,218 @@
+backend:
+  name: git-gateway
+  branch: main
+  commit_messages:
+    create: "Content: add {{collection}} — {{slug}}"
+    update: "Content: update {{collection}} — {{slug}}"
+    delete: "Content: delete {{collection}} — {{slug}}"
+    uploadMedia: "Media: upload {{path}}"
+    deleteMedia: "Media: delete {{path}}"
+
+media_folder: "public/images/uploads"
+public_folder: "/images/uploads"
+
+site_url: https://ventired.com
+display_url: https://ventired.com
+logo_url: /images/logo.png
+
+locale: en
+
+slug:
+  encoding: ascii
+  clean_accents: true
+  sanitize_replacement: "-"
+
+collections:
+
+  # ── BLOG POSTS ────────────────────────────────────────────────
+  - name: posts
+    label: Blog Posts
+    label_singular: Blog Post
+    folder: content/posts
+    create: true
+    delete: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    preview_path: "/strategy-hub/{{slug}}"
+    sortable_fields: [date, title]
+    view_filters:
+      - label: Published
+        field: draft
+        pattern: false
+      - label: Drafts
+        field: draft
+        pattern: true
+    fields:
+      - { label: Title, name: title, widget: string, hint: "Keep under 70 characters for SEO" }
+      - { label: Publish Date, name: date, widget: datetime, format: "YYYY-MM-DD", date_format: "DD MMMM YYYY", time_format: false }
+      - label: Category
+        name: category
+        widget: select
+        options:
+          - { label: Market Entry, value: market-entry }
+          - { label: ADNOC Strategy, value: adnoc }
+          - { label: EPC Strategy, value: epc }
+          - { label: Bid Strategy, value: bid-strategy }
+          - { label: Channel Intelligence, value: channel }
+          - { label: Saudi Arabia, value: ksa }
+          - { label: VR Intelligence, value: intelligence }
+      - { label: Read Time (minutes), name: read_time, widget: number, default: 8, value_type: int }
+      - { label: Excerpt, name: excerpt, widget: text, hint: "2–3 sentences. Used on blog index and RSS feed.", pattern: [".{50,300}", "Between 50 and 300 characters"] }
+      - { label: Featured Image, name: image, widget: image, required: false, hint: "Optional. 1200×630px recommended." }
+      - { label: SEO Meta Description, name: meta_description, widget: string, required: false, hint: "If blank, excerpt is used. Max 160 characters." }
+      - { label: Draft, name: draft, widget: boolean, default: false, hint: "Toggle off to publish" }
+      - { label: Body, name: body, widget: markdown, hint: "Use ## for headings, > for pull quotes, **bold** for emphasis" }
+
+  # ── PIPELINE ACTIVITY ─────────────────────────────────────────
+  - name: pipeline
+    label: Live Pipeline
+    label_singular: Pipeline Entry
+    folder: content/pipeline
+    create: true
+    delete: true
+    slug: "{{slug}}"
+    summary: "{{client}} — {{project}}"
+    sortable_fields: [order, client]
+    fields:
+      - { label: Client / Organisation, name: client, widget: string, hint: "e.g. ADNOC Offshore" }
+      - { label: Project Description, name: project, widget: string, hint: "e.g. Vendor Approval — Phase 2" }
+      - { label: Country, name: country, widget: string, hint: "e.g. UAE" }
+      - label: Status
+        name: status
+        widget: select
+        options:
+          - { label: Live (green dot), value: live }
+          - { label: Active Pursuit (amber dot), value: active }
+          - { label: Won (red dot), value: won }
+      - label: Status Label
+        name: status_label
+        widget: select
+        options:
+          - { label: Live, value: Live }
+          - { label: Active, value: Active }
+          - { label: Pending, value: Pending }
+          - { label: Won, value: Won }
+          - { label: Contract Awarded, value: "Contract Awarded" }
+      - { label: Display Order, name: order, widget: number, default: 1, value_type: int, hint: "Lower number = shown first (1–10)" }
+      - { label: Show on Homepage, name: show_homepage, widget: boolean, default: true }
+      - { label: Note (optional), name: note, widget: string, required: false, hint: "e.g. 60-Day Pursuit — shown in small text under the client name" }
+
+  # ── TESTIMONIALS ──────────────────────────────────────────────
+  - name: testimonials
+    label: Testimonials
+    label_singular: Testimonial
+    folder: content/testimonials
+    create: true
+    delete: true
+    slug: "{{slug}}"
+    summary: "{{name}} — {{company}}"
+    fields:
+      - { label: Name, name: name, widget: string, hint: "e.g. VP Commercial" }
+      - { label: Company / Context, name: company, widget: string, hint: "e.g. Indian Manufacturer · Market Entry" }
+      - { label: Quote, name: quote, widget: text, hint: "The testimonial text. 1–3 sentences." }
+      - { label: Result Highlight, name: result, widget: string, hint: "e.g. Pipeline Visibility in 14 Days" }
+      - { label: Star Rating, name: stars, widget: number, default: 5, min: 4, max: 5, value_type: int }
+      - { label: Display Order, name: order, widget: number, default: 1, value_type: int }
+      - { label: Show on Homepage, name: show_homepage, widget: boolean, default: true }
+
+  # ── VR INTELLIGENCE ENTRIES ───────────────────────────────────
+  - name: intelligence
+    label: VR Intelligence
+    label_singular: Intelligence Entry
+    folder: content/intelligence
+    create: true
+    delete: true
+    slug: "{{slug}}"
+    summary: "{{app}} — {{title}}"
+    fields:
+      - label: Platform
+        name: app
+        widget: select
+        options:
+          - { label: Z358 One, value: Z358 One }
+          - { label: Parteloa, value: Parteloa }
+      - { label: Feature Title, name: title, widget: string }
+      - { label: Description, name: description, widget: text, hint: "2–3 sentences describing this feature or update." }
+      - { label: Feature Type, name: type, widget: select, options: [Feature, Update, "Case Study", Integration] }
+      - { label: Date, name: date, widget: datetime, format: "YYYY-MM-DD", time_format: false }
+      - { label: Display Order, name: order, widget: number, default: 1, value_type: int }
+
+  # ── SITE SETTINGS ─────────────────────────────────────────────
+  - name: settings
+    label: Site Settings
+    delete: false
+    editor:
+      preview: false
+    files:
+
+      - label: Global Settings
+        name: global
+        file: _data/settings.json
+        fields:
+          - { label: Site Title, name: site_title, widget: string }
+          - { label: Tagline, name: tagline, widget: string }
+          - { label: Email, name: email, widget: string }
+          - { label: Phone, name: phone, widget: string }
+          - { label: WhatsApp Number, name: whatsapp, widget: string, hint: "International format without + e.g. 971582977840" }
+          - { label: LinkedIn URL, name: linkedin, widget: string }
+          - { label: Calendar Booking URL, name: calendar_url, widget: string }
+          - { label: Stripe Diagnostic Link, name: stripe_url, widget: string }
+          - label: Address
+            name: address
+            widget: object
+            fields:
+              - { label: Building, name: building, widget: string }
+              - { label: Area, name: area, widget: string }
+              - { label: City, name: city, widget: string }
+              - { label: Country, name: country, widget: string }
+              - { label: PO Box, name: po_box, widget: string }
+
+      - label: Homepage Content
+        name: homepage
+        file: _data/homepage.json
+        fields:
+          - { label: Hero Headline Line 1, name: hero_line1, widget: string }
+          - { label: Hero Headline Line 2, name: hero_line2, widget: string, hint: "This renders in italic red" }
+          - { label: Hero Subtext, name: hero_sub, widget: text }
+          - { label: Pipeline Footer Stat, name: pipeline_stat, widget: string, hint: "e.g. 30+ Countries Active" }
+          - { label: Stats — Revenue, name: stat_revenue, widget: string, default: "£100M+" }
+          - { label: Stats — Growth, name: stat_growth, widget: string, default: "500%" }
+          - { label: Stats — Years, name: stat_years, widget: string, default: "30+" }
+          - { label: Stats — Countries, name: stat_countries, widget: string, default: "50+" }
+
+      - label: Pricing
+        name: pricing
+        file: _data/pricing.json
+        fields:
+          - label: GCC Diagnostic
+            name: diagnostic
+            widget: object
+            fields:
+              - { label: Price, name: price, widget: string, default: "$197" }
+              - { label: Price Note, name: note, widget: string, default: "Fixed · 5 working days · No lock-in" }
+              - { label: Tagline, name: tagline, widget: string }
+              - label: Features
+                name: features
+                widget: list
+                field: { label: Feature, name: feature, widget: string }
+          - label: Commercial Launchpad
+            name: launchpad
+            widget: object
+            fields:
+              - { label: Price, name: price, widget: string, default: "POA" }
+              - { label: Price Note, name: note, widget: string }
+              - { label: Tagline, name: tagline, widget: string }
+              - label: Features
+                name: features
+                widget: list
+                field: { label: Feature, name: feature, widget: string }
+          - label: Fractional Director
+            name: fractional
+            widget: object
+            fields:
+              - { label: Price, name: price, widget: string, default: "Retainer" }
+              - { label: Price Note, name: note, widget: string }
+              - { label: Tagline, name: tagline, widget: string }
+              - label: Features
+                name: features
+                widget: list
+                field: { label: Feature, name: feature, widget: string }

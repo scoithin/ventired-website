@@ -1,0 +1,17 @@
+{
+  "site_title": "Venti Red",
+  "tagline": "GCC Industrial Sales Execution",
+  "email": "scott@ventired.com",
+  "phone": "+971 58 297 7840",
+  "whatsapp": "971582977840",
+  "linkedin": "https://linkedin.com/in/scottrobinsonuae",
+  "calendar_url": "https://calendar.app.google/SrfdEJRZvq8j2FKn9",
+  "stripe_url": "https://buy.stripe.com/dRm9AU2rQeak4N6e9v1kA00",
+  "address": {
+    "building": "Platinum Tower",
+    "area": "Cluster I, Jumeirah Lake Towers",
+    "city": "Dubai",
+    "country": "UAE",
+    "po_box": "PO Box 338482"
+  }
+}
