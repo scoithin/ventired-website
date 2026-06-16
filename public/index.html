@@ -1588,7 +1588,7 @@ footer{background:var(--bg);border-top:1px solid var(--line);padding:72px 0 36px
     if (insightLines.length) {
       var insightDiv = document.createElement('div');
       insightDiv.className = 'chat-insights';
-      insightDiv.innerHTML = '<div class="chat-insights-title">Based on what you've told me</div>' +
+      insightDiv.innerHTML = '<div class="chat-insights-title">Based on what you\'ve told me</div>' +
         insightLines.map(function(line) {
           var clean = line.replace(/^[-•*\d.]+\s*/, '').trim();
           return '<div class="chat-insight"><div class="chat-insight-dot"></div><span>' + clean + '</span></div>';
@@ -1675,7 +1675,7 @@ footer{background:var(--bg);border-top:1px solid var(--line);padding:72px 0 36px
           bookDiv.className = 'chat-recommendation';
           bookDiv.innerHTML = '<div class="chat-rec-label">Ready to Proceed</div>' +
             '<div class="chat-rec-title">Book a Call with Scott</div>' +
-            '<div class="chat-rec-desc">You're ready to move. Let's have a direct conversation and get started.</div>' +
+            '<div class="chat-rec-desc">You are ready to move. Let us have a direct conversation and get started.</div>' +
             '<div class="chat-rec-actions"><a href="https://calendar.app.google/SrfdEJRZvq8j2FKn9" class="btn-primary" target="_blank" rel="noopener">Book the Call →</a></div>';
           msgList.appendChild(bookDiv);
           msgList.scrollTop = msgList.scrollHeight;
