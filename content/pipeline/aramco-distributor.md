@@ -1,10 +1,10 @@
 ---
-client: "Aramco"
-project: "Distributor Onboarding"
-country: "KSA"
-status: "live"
-status_label: "Live"
+client: Parteloa
+project: New Intelligence App Launch
+country: UAE
+status: live
+status_label: Live
 order: 4
 show_homepage: true
-note: "Active Engagement"
+note: Active Engagement
 ---
