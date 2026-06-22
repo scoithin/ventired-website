@@ -1,8 +1,44 @@
 {
   "items": [
-    { "client": "Técnicas Reunidas", "project": "EPC Specification", "country": "KSA", "note": "Marjan Package", "status": "won", "status_label": "Won", "order": 1, "show_homepage": true },
-    { "client": "Saab", "project": "Defence Tender", "country": "Sweden", "note": "Multi-Stage Pursuit", "status": "active", "status_label": "Pending", "order": 2, "show_homepage": true },
-    { "client": "Woodside", "project": "Safety Package", "country": "Australia", "note": "Contract Awarded", "status": "won", "status_label": "Won", "order": 3, "show_homepage": true },
-    { "client": "Bechtel", "project": "Mining Pursuit", "country": "Chile", "note": "Active Engagement", "status": "live", "status_label": "Live", "order": 4, "show_homepage": true }
+    {
+      "client": "Micro Crystal AG",
+      "project": "Project New Shock Testing Facility",
+      "country": "Switzerland",
+      "note": "New Lab Development",
+      "status": "won",
+      "status_label": "Won",
+      "order": 1,
+      "show_homepage": true
+    },
+    {
+      "client": "Nammo",
+      "project": "Extreme Environment Testing",
+      "country": "Norway",
+      "note": "Multi-Stage Pursuit",
+      "status": "won",
+      "status_label": "Won",
+      "order": 2,
+      "show_homepage": true
+    },
+    {
+      "client": "IFF Creative Centre",
+      "project": "Safety Package",
+      "country": "United Arab Emirates",
+      "note": "New Safety Equipment Technology",
+      "status": "live",
+      "status_label": "Live",
+      "order": 3,
+      "show_homepage": true
+    },
+    {
+      "client": "Parteloa",
+      "project": "Partner & Contractor Intelligence",
+      "country": "United Arab Emirates",
+      "note": "Active Engagement",
+      "status": "live",
+      "status_label": "Live",
+      "order": 4,
+      "show_homepage": true
+    }
   ]
 }
