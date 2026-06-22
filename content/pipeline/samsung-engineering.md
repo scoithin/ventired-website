@@ -1,5 +1,5 @@
 ---
-client: IFF
+client: IFF Creative Centre
 project: Lab Safety Upgrades
 country: UAE
 status: active
