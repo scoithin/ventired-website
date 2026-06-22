@@ -1,10 +1,10 @@
 ---
-client: "Petrofac"
-project: "EPC Tender Submission"
-country: "KSA"
-status: "active"
-status_label: "Pending"
+client: Nammo
+project: Next Gen Validation
+country: Norway
+status: won
+status_label: Won
 order: 2
 show_homepage: true
-note: "60-Day Pursuit"
+note: Multi Stage Bid Process
 ---
