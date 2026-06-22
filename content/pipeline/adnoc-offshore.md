@@ -1,8 +1,8 @@
 ---
-client: ADNOC Offshore
-project: Product Approval — Phase 2
-country: UAE
-status: live
+client: Micro Crystal AG
+project: Project Shock Test Upgrade
+country: Switzerland
+status: won
 status_label: Live
 order: 1
 show_homepage: true
