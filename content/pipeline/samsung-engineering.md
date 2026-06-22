@@ -1,10 +1,10 @@
 ---
-client: "Samsung Engineering"
-project: "Specification In"
-country: "Qatar"
-status: "won"
-status_label: "Contract Awarded"
+client: IFF
+project: Lab Safety Upgrades
+country: UAE
+status: active
+status_label: Bid Submitted
 order: 3
 show_homepage: true
-note: "Contract Awarded ✓"
+note: New Safety Technology Proposed
 ---
