@@ -1,13 +1,13 @@
 {
   "items": [
     {
-      "client": "Micro Crystal AG",
-      "project": "Project New Shock Testing Facility",
-      "country": "Switzerland",
-      "note": "New Lab Development",
-      "status": "won",
-      "status_label": "Won",
-      "order": 1,
+      "client": "Parteloa",
+      "project": "Know your markets. Move first.",
+      "country": "United Arab Emirates",
+      "note": "Active Engagement",
+      "status": "live",
+      "status_label": "Live",
+      "order": 4,
       "show_homepage": true
     },
     {
@@ -31,13 +31,13 @@
       "show_homepage": true
     },
     {
-      "client": "Parteloa",
-      "project": "Partner & Contractor Intelligence",
-      "country": "United Arab Emirates",
-      "note": "Active Engagement",
-      "status": "live",
-      "status_label": "Live",
-      "order": 4,
+      "client": "Micro Crystal AG",
+      "project": "Project New Shock Testing Facility",
+      "country": "Switzerland",
+      "note": "New Lab Development",
+      "status": "won",
+      "status_label": "Won",
+      "order": 1,
       "show_homepage": true
     }
   ]
