@@ -31,12 +31,12 @@
       "show_homepage": true
     },
     {
-      "client": "Micro Crystal AG",
-      "project": "Project New Shock Testing Facility",
-      "country": "Switzerland",
-      "note": "New Lab Development",
-      "status": "won",
-      "status_label": "Won",
+      "client": "New CRM System Launch",
+      "project": "Take control of your pipeline",
+      "country": "UAE",
+      "note": "Deal control and live market intel across everything",
+      "status": "live",
+      "status_label": "Live",
       "order": 1,
       "show_homepage": true
     }
