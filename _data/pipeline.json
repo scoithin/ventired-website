@@ -15,7 +15,7 @@
       "project": "Engineering consultancy route to market",
       "country": "KSA",
       "note": "Market entry planning stage",
-      "status": "active",
+      "status": "live",
       "status_label": "Live",
       "order": 2,
       "show_homepage": true
@@ -26,7 +26,7 @@
       "country": "Germany",
       "note": "New package testing equipment",
       "status": "won",
-      "status_label": "Live",
+      "status_label": "Won",
       "order": 3,
       "show_homepage": true
     },
