@@ -1,8 +1,8 @@
 {
   "items": [
     {
-      "client": "Parteloa",
-      "project": "Know your markets. Move first.",
+      "client": "Dropped",
+      "project": "Your losing money from the leads you already paid for",
       "country": "United Arab Emirates",
       "note": "Active Engagement",
       "status": "live",
@@ -11,10 +11,10 @@
       "show_homepage": true
     },
     {
-      "client": "Strategic Utilities Solution",
-      "project": "Engineering consultancy route to market",
-      "country": "KSA",
-      "note": "Market entry planning stage",
+      "client": "VR Coaching",
+      "project": "Win more long cycle deals",
+      "country": "UAE",
+      "note": "Sales Coaching",
       "status": "live",
       "status_label": "Live",
       "order": 2,
