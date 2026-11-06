@@ -1,18 +1,18 @@
 {
   "items": [
     {
-      "client": "Dropped",
-      "project": "Your losing money from the leads you already paid for",
-      "country": "United Arab Emirates",
+      "client": "Rheinmetall",
+      "project": "Small project win in SA",
+      "country": "South Africa",
       "note": "Active Engagement",
-      "status": "live",
-      "status_label": "Live",
+      "status": "won",
+      "status_label": "Won",
       "order": 4,
       "show_homepage": true
     },
     {
-      "client": "VR Coaching",
-      "project": "Win more long cycle deals",
+      "client": "Deal Room",
+      "project": "Win more long cycle deals - IS LIVE",
       "country": "UAE",
       "note": "Sales Coaching",
       "status": "live",
@@ -21,17 +21,17 @@
       "show_homepage": true
     },
     {
-      "client": "Papair - Germany",
-      "project": "Lab Equipment Upgrade",
-      "country": "Germany",
-      "note": "New package testing equipment",
-      "status": "won",
-      "status_label": "Won",
+      "client": "Aquelon",
+      "project": "Drinking fountains, bottle fillers, hygiene stations and emergency showers for the GCC. A Venti Red brand.",
+      "country": "UAE",
+      "note": "GCC Water Infrastructue New Branding",
+      "status": "live",
+      "status_label": "Live",
       "order": 3,
       "show_homepage": true
     },
     {
-      "client": "New CRM System Launch",
+      "client": "Froob.io",
       "project": "Take control of your pipeline",
       "country": "UAE",
       "note": "Deal control and live market intel across everything",
