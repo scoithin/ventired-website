@@ -1,13 +1,13 @@
 {
   "email": "sales@ventired.com",
   "phone": "+971 4 501 1360",
-  "whatsapp": "971582977840",
+  "whatsapp": "971585763023",
   "linkedin": "https://www.linkedin.com/company/venti-red",
   "calendar_url": "https://cal.com/scott-robinson-hn8vga/20-minute-strategy-session",
   "stripe_url": "https://buy.stripe.com/dRm9AU2rQeak4N6e9v1kA00",
   "address": {
-    "building": "Platinum Tower",
     "area": "Cluster I, Jumeirah Lake Towers",
+    "building": "Platinum Tower",
     "city": "Dubai",
     "country": "UAE",
     "po_box": "PO Box 338482"
