@@ -2,7 +2,7 @@
   "diagnostic": {
     "price": "$250",
     "note": "Refundable deposit · Credited if you proceed",
-    "tagline": "Go or No-Go — Before You Commit",
+    "tagline": "Yes or No, Before You Commit",
     "features": [
       "GCC opportunity landscape assessment",
       "Procurement cycle mapping for your sector",
@@ -13,9 +13,9 @@
     ]
   },
   "launchpad": {
-    "price": "POA",
-    "note": "Fixed-scope · Priced on your sector and market",
-    "tagline": "Full Infrastructure — 90 Days",
+    "price": "$8,000",
+    "note": "Fixed fee · 50% back if the deliverables slip",
+    "tagline": "The 90-day build for owners whose market has flattened",
     "features": [
       "Full route to market architecture",
       "Qualified distributor pipeline (scored & ranked)",
